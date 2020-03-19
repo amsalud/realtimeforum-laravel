@@ -13,7 +13,7 @@ class Question extends Model
     }
 
     public function user(){
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function replies(){
@@ -22,5 +22,9 @@ class Question extends Model
 
     public function category(){
         return $this->belongsTo('App\Models\Category');
+    }
+
+    public function getPathAttribute(){
+        return asset("api/question/$this->slug");
     }
 }

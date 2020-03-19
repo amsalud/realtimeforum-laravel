@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -12,9 +13,9 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        return $question->replies;
     }
 
     /**

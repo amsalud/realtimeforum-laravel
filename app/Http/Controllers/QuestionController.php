@@ -26,7 +26,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = Question::create($request->all());
+        return response($question, Response::HTTP_CREATED);
     }
 
     /**

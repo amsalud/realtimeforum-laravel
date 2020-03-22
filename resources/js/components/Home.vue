@@ -6,16 +6,19 @@
                 <!-- CONTENTS -->
             </v-container>
         </v-sheet>
+        <app-footer></app-footer>
     </v-card>
 </template>
 
 <script>
 import AppToolbar from './AppToolbar'
+import AppFooter from './AppFooter'
 
 export default {
     name: 'home',
     components : {
-        AppToolbar
+        AppToolbar,
+        AppFooter
     }
 }
 </script>

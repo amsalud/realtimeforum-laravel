@@ -10,9 +10,11 @@ window.Vue = require('vue');
 
 import App from './App.vue';
 import vuetify from './vuetify';
+import router from './router';
 
 const app = new Vue({
     vuetify,
+    router,
     render: h => h(App),
     el: '#app'
 });

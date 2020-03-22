@@ -1,10 +1,22 @@
 <template>
-   <h1>Home Component</h1>
+    <v-card class="overflow-hidden">
+        <app-toolbar></app-toolbar>
+        <v-sheet id="scrolling-techniques-7" class="overflow-y-auto" max-height="600">
+            <v-container style="height: 1500px;">
+                <!-- CONTENTS -->
+            </v-container>
+        </v-sheet>
+    </v-card>
 </template>
 
 <script>
+import AppToolbar from './AppToolbar'
+
 export default {
-    name: 'home'
+    name: 'home',
+    components : {
+        AppToolbar
+    }
 }
 </script>
 

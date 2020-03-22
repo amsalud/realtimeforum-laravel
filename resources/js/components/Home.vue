@@ -3,7 +3,7 @@
         <app-toolbar></app-toolbar>
         <v-sheet id="scrolling-techniques-7" class="overflow-y-auto" max-height="600">
             <v-container style="height: 1500px;">
-                <!-- CONTENTS -->
+                <router-view></router-view>
             </v-container>
         </v-sheet>
         <app-footer></app-footer>

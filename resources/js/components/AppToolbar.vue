@@ -29,6 +29,10 @@ export default {
           {title: 'Sign Out', to: '/logout', show: User.loggedIn()}
         ]
       }
+    },
+
+    created(){
+      EventBus.$on('logout', ()=> { User.logout(this.$router);})
     }
 }
 </script>

@@ -2,18 +2,19 @@ import Token from './Token'
 import AppStorage from './AppStorage'
 
 class User {
-    login(formData) {
+    login(formData, router) {
         axios.post('/api/auth/login', formData)
         .then(res=> {
-            this.responseAfterLogin(res.data);
+            this.responseAfterLogin(res.data, router);
         })
         .catch(error=> console.log(error.response.data));
     }
 
-    responseAfterLogin(data){
+    responseAfterLogin(data, router){
         const {user, access_token } = data;
         if(Token.isValid(access_token)){
-            AppStorage.store(user, access_token)
+            AppStorage.store(user, access_token);
+            router.push({name: 'forum'});
         }
     }
 

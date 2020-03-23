@@ -9,11 +9,28 @@ class User {
         })
         .catch(error=> console.log(error.response.data));
     }
+
     responseAfterLogin(data){
         const {user, access_token } = data;
         if(Token.isValid(access_token)){
             AppStorage.store(user, access_token)
         }
+    }
+    
+    hasToken(){
+        const storedToken = AppStorage.getToken();
+        if(storedToken){
+            return Token.isValid(storedToken) ?  true : false;
+        }
+        return false;
+    }
+
+    loggedIn(){
+        return this.hasToken();
+    }
+
+    logout(){
+        AppStorage.clear();
     }
 }
 

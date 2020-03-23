@@ -30,8 +30,9 @@ class User {
         return this.hasToken();
     }
 
-    logout(){
+    logout(router){
         AppStorage.clear();
+        router.push('forum');
     }
 
     getName(){

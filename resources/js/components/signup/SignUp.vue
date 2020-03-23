@@ -63,7 +63,7 @@ export default {
     methods: {
         signUp(){
             axios.post('/api/auth/signup', this.form)
-            .then(res=> User.responseAfterLogin(res))
+            .then(res=> User.responseAfterLogin(res.data))
             .catch(err=> {
               if(err.response){
                 this.errors = err.response.data.errors;

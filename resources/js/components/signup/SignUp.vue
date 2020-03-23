@@ -31,7 +31,11 @@
         color="success"
         class="mr-4"
         type="submit"     
-      >Sign Up</v-btn>
+      >Register</v-btn>
+       <v-btn
+        class="mr-4"
+        to="/login"   
+      >Sign In</v-btn>
     </v-form>
     </v-container>
 </template>

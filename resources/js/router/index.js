@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/login', component: Login },
     { path: '/register', component: SignUp },
-    { path: '/forum', component: Forum },
+    { path: '/forum', component: Forum, name: 'forum' },
   ]
   
 export default new VueRouter({ routes, mode: 'history'})

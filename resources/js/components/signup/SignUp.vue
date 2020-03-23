@@ -6,30 +6,26 @@
         v-model="form.name"
         label="Name"
         type="text"
-        :rules="inputRules.name"
-        required
+        :error-messages="errors.name"
       ></v-text-field>
       <v-text-field
         v-model="form.email"
         label="Email"
         type="email"
-        :rules="inputRules.email"
-        required
+        :error-messages="errors.email"
       ></v-text-field>
 
       <v-text-field
         v-model="form.password"
         label="Password"
         type="password"
-        :rules="inputRules.password"
-        required
+        :error-messages="errors.password"
       ></v-text-field>
         <v-text-field
         v-model="form.password_confirmation"
         label="Confirm Password"
         type="password"
-        :rules="inputRules.password_confirmation"
-        required
+        :error-messages="errors.password"
       ></v-text-field>
       <v-btn
         color="success"
@@ -57,22 +53,10 @@ export default {
                 password: null,
                 password_confirmation: null
             },
-            inputRules:{
-                name: [
-                    v => !!v || 'Name is required',
-                    v => v.length > 5 || 'Name must be greater than 5 characters'
-                ],
-                email: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+/.test(v) || 'E-mail must be valid',
-                ],
-                password: [
-                    v => !!v || 'Password is required'
-                ],
-                password_confirmation: [
-                    v => !!v || 'Password Confirmation is required',
-                    v => v != this.form.password
-                ]
+            errors: {
+              name: '',
+              email: '',
+              password: ''
             }
         }
     },
@@ -80,7 +64,12 @@ export default {
         signUp(){
             axios.post('/api/auth/signup', this.form)
             .then(res=> User.responseAfterLogin(res))
-            .catch(err=> console.log(err.data));
+            .catch(err=> {
+              if(err.response){
+                this.errors = err.response.data.errors;
+                setTimeout(()=> this.errors = { name: '', email: '', password: ''}, 5000);
+              }
+            });
         }
     }
 }

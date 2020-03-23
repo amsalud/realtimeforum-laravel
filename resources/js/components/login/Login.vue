@@ -1,5 +1,6 @@
 <template>
 <v-container>
+    <h1>Sign in to continue</h1>
     <v-form v-model="valid">
       <v-text-field
         v-model="form.email"

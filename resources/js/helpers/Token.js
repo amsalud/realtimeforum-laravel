@@ -6,10 +6,12 @@ class Token {
         }
         return false;
     }
+    
     payload(token){
       const tokenPayload = token.split('.')[1]; 
       return this.decode(tokenPayload);
     }
+
     decode(tokenPayload){
         return JSON.parse(atob(tokenPayload));
     }

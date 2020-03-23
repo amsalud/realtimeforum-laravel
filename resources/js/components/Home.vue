@@ -2,7 +2,7 @@
     <v-card class="overflow-hidden">
         <app-toolbar></app-toolbar>
         <v-sheet id="scrolling-techniques-7" class="overflow-y-auto" height="100vh">
-            <v-container class="mt-10 pt-10">
+            <v-container class="ma-10 pa-5">
                 <router-view></router-view>
             </v-container>
         </v-sheet>

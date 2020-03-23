@@ -60,6 +60,11 @@ export default {
             }
         }
     },
+    created(){
+      if(User.loggedIn()){
+        this.$router.push({name: 'forum'});
+      }
+    },
     methods: {
         signUp(){
             axios.post('/api/auth/signup', this.form)

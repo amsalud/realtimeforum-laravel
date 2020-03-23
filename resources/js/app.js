@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.EventBus = new Vue();
 
 import App from './App.vue';
 import vuetify from './vuetify';

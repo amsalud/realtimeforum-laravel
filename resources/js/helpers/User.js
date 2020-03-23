@@ -1,4 +1,4 @@
-const User = {
+class User {
     login(formData) {
         axios.post('/api/auth/login', formData)
         .then(res=> console.log(res.data))
@@ -6,4 +6,4 @@ const User = {
     }
 }
 
-export default User;
+export default new User();

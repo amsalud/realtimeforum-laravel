@@ -16,7 +16,7 @@ class User {
             AppStorage.store(user, access_token)
         }
     }
-    
+
     hasToken(){
         const storedToken = AppStorage.getToken();
         if(storedToken){
@@ -31,6 +31,19 @@ class User {
 
     logout(){
         AppStorage.clear();
+    }
+
+    getName(){
+        if(this.loggedIn()){
+            return AppStorage.getUser();
+        }
+    }
+
+    getId(){
+        if(this.loggedIn()){
+            const payload = Token.payload(AppStorage.getToken());
+            return payload.sub;
+        }
     }
 }
 

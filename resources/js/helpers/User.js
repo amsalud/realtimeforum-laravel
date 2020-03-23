@@ -15,6 +15,7 @@ class User {
         if(Token.isValid(access_token)){
             AppStorage.store(user, access_token);
             router.push({name: 'forum'});
+            EventBus.$emit('login');
         }
     }
 

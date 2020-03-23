@@ -21,18 +21,28 @@ export default {
     name: "AppToolbar",
     data(){
       return {
-        items: [
+        items: this.initializeMenuItems()
+      }
+    },
+
+    created(){
+      EventBus.$on('logout', ()=> { 
+        User.logout(this.$router);
+        this.items = this.initializeMenuItems();
+      });
+
+      EventBus.$on('login', ()=> { 
+        this.items = this.initializeMenuItems();
+      });
+    },
+    methods: {
+      initializeMenuItems:() => ([
           {title: 'Forum', to: '/forum', show: true},
           {title: 'Ask Question', to: '/question', show: User.loggedIn()},
           {title: 'Category', to: '/category', show: User.loggedIn()},
           {title: 'Sign in', to: '/login', show: !User.loggedIn()},
           {title: 'Sign Out', to: '/logout', show: User.loggedIn()}
-        ]
-      }
-    },
-
-    created(){
-      EventBus.$on('logout', ()=> { User.logout(this.$router);})
+        ])
     }
 }
 </script>

@@ -6,6 +6,7 @@
         v-model="form.email"
         label="Email"
         type="email"
+        :rules="inputRules.email"
         required
       ></v-text-field>
 
@@ -13,6 +14,7 @@
         v-model="form.password"
         label="Password"
         type="password"
+        :rules="inputRules.password"
         required
       ></v-text-field>
 
@@ -42,6 +44,15 @@ export default {
             form:{
                 email:null,
                 password:null
+            },
+            inputRules:{
+                email: [
+                    v => !!v || 'E-mail is required',
+                    v => /.+@.+/.test(v) || 'E-mail must be valid',
+                ],
+                password: [
+                    v => !!v || 'Password is required'
+                ]
             }
         }
     },

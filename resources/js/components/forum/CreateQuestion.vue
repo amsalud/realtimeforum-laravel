@@ -15,24 +15,31 @@
         label="Category"
         placeholder="Select a Category"
       ></v-autocomplete>
+     <vue-simplemde v-model="form.body" ref="markdownEditor" />
 
       <v-btn
         color="success"
         class="mr-4"
         type="submit"     
-      >Ask</v-btn>
+      >Submit</v-btn>
     </v-form>
     </v-container>
 </template>
 
 <script>
+import VueSimplemde from 'vue-simplemde'
+
 export default {
     name: "CreateQuestion",
+    components : {
+        VueSimplemde
+    },
     data(){
         return {
             form: {
                 title: null,
-                category: null
+                category: null,
+                body:null
             },
             categories: null
         }
@@ -44,3 +51,6 @@ export default {
     }
 }
 </script>
+<style scoped>
+    @import '~simplemde/dist/simplemde.min.css';
+</style>

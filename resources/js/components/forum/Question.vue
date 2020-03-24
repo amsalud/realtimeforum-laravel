@@ -13,7 +13,7 @@
                     <v-btn icon small>
                         <v-icon>edit</v-icon>
                     </v-btn>
-                    <v-btn icon small>
+                    <v-btn icon small @click="deleteQuestion">
                         <v-icon>delete</v-icon>
                     </v-btn>
                 </v-card-actions>
@@ -46,6 +46,13 @@ export default {
     computed: {
         own(){
             return this.question ? User.own(this.question.user_id): null;
+        }
+    },
+    methods : {
+        deleteQuestion(){
+            axios.delete(`/api/question/${this.question.slug}`)
+            .then(res=> this.$router.push('/forum'))
+            .catch(err=> console.log(err));
         }
     }
 }

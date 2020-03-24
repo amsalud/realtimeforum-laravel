@@ -53,7 +53,7 @@ export default {
     methods:{
         create(){
             axios.post('/api/question', this.form)
-            .then(res=>console.log(res.data))
+            .then(res=>this.$router.push(`/question/${res.data.slug}`))
             .catch(err=>this.errors = err.response.data.error);
         }
     }

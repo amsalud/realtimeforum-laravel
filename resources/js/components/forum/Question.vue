@@ -10,10 +10,10 @@
                 </div>
                 <v-spacer></v-spacer>
                 <v-card-actions v-if="own">
-                    <v-btn icon small>
+                    <v-btn icon small :to="`/question/edit/${question.slug}`">
                         <v-icon>edit</v-icon>
                     </v-btn>
-                    <v-btn icon small @click="deleteQuestion">
+                    <v-btn icon small @click="deleteQuestion" >
                         <v-icon>delete</v-icon>
                     </v-btn>
                 </v-card-actions>

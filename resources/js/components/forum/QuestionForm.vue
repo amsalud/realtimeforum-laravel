@@ -30,7 +30,7 @@
 import VueSimplemde from 'vue-simplemde'
 
 export default {
-    name: "CreateQuestion",
+    name: "QuestionForm",
     components : {
         VueSimplemde
     },

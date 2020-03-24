@@ -2,7 +2,7 @@
     <v-container>
         <v-form @submit.prevent="create">
       <v-text-field
-        v-model="form.email"
+        v-model="form.title"
         label="Title"
         type="text"
       ></v-text-field>
@@ -38,7 +38,7 @@ export default {
         return {
             form: {
                 title: null,
-                category: null,
+                category_id: null,
                 body:null
             },
             categories: null,

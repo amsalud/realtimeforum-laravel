@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-form @submit.prevent="create">
+    <v-form @submit.prevent="handleSubmit">
       <v-text-field
         v-model="form.title"
         label="Title"
@@ -42,19 +42,47 @@ export default {
                 body:null
             },
             categories: null,
-            errors: null
+            errors: null,
+            editMode:false
         }
     },
     created(){
+        if(this.$route.params.slug){
+            this.editMode = true;
+            axios.get(`/api/question/${this.$route.params.slug}`)
+            .then(res=> {
+                const { title, body, category_id } = res.data.data;
+                this.form = {
+                    title, 
+                    category_id, 
+                    body
+                };
+            })
+            .catch(err=>console.log(err));
+        }
+
         axios.get('/api/category')
         .then(res=> this.categories = res.data.data)
         .catch(err=>console.log(err));
     },
     methods:{
-        create(){
+        handleSubmit(){
+            if(this.editMode){
+                this.editQuestion();
+            }
+            else{
+                this.createQuestion();
+            }
+        },
+        createQuestion(){
             axios.post('/api/question', this.form)
             .then(res=>this.$router.push(`/question/${res.data.slug}`))
             .catch(err=>this.errors = err.response.data.error);
+        },
+        editQuestion(){
+            axios.put(`/api/question/${this.$route.params.slug}`, this.form)
+            .then(res=> this.$router.push(`/question/${res.data.slug}`))
+            .catch(err=> console.log(err));
         }
     }
 }

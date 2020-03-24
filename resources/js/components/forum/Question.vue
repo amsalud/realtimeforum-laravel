@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import md from 'marked'
 export default {
     name: "Question",
     data(){
@@ -26,7 +27,10 @@ export default {
     },
     created(){
         axios.get(`/api/question/${this.$route.params.slug}`)
-        .then(res=>this.question = res.data.data)
+        .then(res=>{
+            this.question = res.data.data
+            this.question.body = md.parse(this.question.body);
+        })
         .catch(err=> console.log(err));
     }
 }

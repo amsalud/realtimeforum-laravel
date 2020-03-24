@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-form @submit.prevent="true">
+        <v-form @submit.prevent="create">
       <v-text-field
         v-model="form.email"
         label="Title"
@@ -41,13 +41,21 @@ export default {
                 category: null,
                 body:null
             },
-            categories: null
+            categories: null,
+            errors: null
         }
     },
     created(){
         axios.get('/api/category')
         .then(res=> this.categories = res.data.data)
         .catch(err=>console.log(err));
+    },
+    methods:{
+        create(){
+            axios.post('/api/question', this.form)
+            .then(res=>console.log(res.data))
+            .catch(err=>this.errors = err.response.data.error);
+        }
     }
 }
 </script>

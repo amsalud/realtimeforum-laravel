@@ -20,7 +20,8 @@ class QuestionResource extends JsonResource
             'slug' => $this->slug,
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
-            'user' => $this->user->name
+            'user' => $this->user->name,
+            'user_id' => $this->user->id
         ];
     }
 }

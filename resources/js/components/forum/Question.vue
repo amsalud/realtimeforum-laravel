@@ -9,7 +9,16 @@
                     <span class="grey--text">{{question.user}} said {{question.created_at}}</span>
                 </div>
                 <v-spacer></v-spacer>
-                <v-btn outlined>5 Replies</v-btn>
+                <v-card-action>
+                    <v-btn icon small>
+                        <v-icon>edit</v-icon>
+                    </v-btn>
+                    <v-btn icon small>
+                        <v-icon>delete</v-icon>
+                    </v-btn>
+                    <v-btn outlined>5 Replies</v-btn>
+                </v-card-action>
+                
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
         </v-container>

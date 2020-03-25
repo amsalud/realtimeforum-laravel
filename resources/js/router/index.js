@@ -7,6 +7,7 @@ import Logout from '../components/logout/Logout'
 import Forum from '../components/forum/Forum'
 import Question from '../components/forum/Question'
 import QuestionForm from '../components/forum/QuestionForm'
+import CategoryForm from '../components/category/CategoryForm'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,7 @@ const routes = [
     { path: '/question/ask', component: QuestionForm, name: 'askquestion'},
     { path: '/question/edit/:slug', component: QuestionForm, name: 'editquestion'},
     { path: '/question/:slug', component: Question, name: 'question' },
+    { path: '/category/create', component: CategoryForm, name: 'createcategory' },
   ]
   
 export default new VueRouter({ routes, mode: 'history'})

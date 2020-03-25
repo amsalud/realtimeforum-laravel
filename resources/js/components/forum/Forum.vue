@@ -5,7 +5,7 @@
                 <question-item v-for="(question, index) in questions" :key="index" :question="question"></question-item>
             </v-flex>
             <v-flex>
-                Sidebar
+                <sidebar></sidebar>
             </v-flex>
         </v-layout>
     </v-container>
@@ -13,10 +13,12 @@
 
 <script>
 import QuestionItem from './QuestionItem'
+import Sidebar from './Sidebar'
 export default {
     name: "Forum",
     components:{
-        QuestionItem
+        QuestionItem,
+        Sidebar
     },
     data(){
         return {

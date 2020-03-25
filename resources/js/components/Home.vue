@@ -1,8 +1,8 @@
 <template>
-    <v-card class="overflow-hidden">
+    <v-card>
         <app-toolbar></app-toolbar>
         <v-sheet id="scrolling-techniques-7" class="overflow-y-auto" height="100vh">
-            <v-container class="ma-10 pa-5">
+            <v-container class="mt-10 mb-10 pa-5">
                 <router-view></router-view>
             </v-container>
         </v-sheet>

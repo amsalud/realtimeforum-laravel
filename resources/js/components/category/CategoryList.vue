@@ -12,7 +12,7 @@
                     <v-btn icon small @click="editCategory(category)">
                         <v-icon>edit</v-icon>
                     </v-btn>
-                    <v-btn icon small >
+                    <v-btn icon small @click="deleteCategory(category)">
                         <v-icon>delete</v-icon>
                     </v-btn>
                 </v-card-actions>
@@ -50,6 +50,11 @@ export default {
         },
         editCategory(category){
             EventBus.$emit('edit-category', {...category});
+        },
+        deleteCategory(category){
+            axios.delete(`/api/category/${category.slug}`).then(res=>{
+                this.categories = this.categories.filter(item=> item.id != category.id);
+            }).catch(err=>console.log(err));
         }
     }
 }

@@ -18,12 +18,11 @@
                     </v-btn>
                 </v-card-actions>
                 <v-btn outlined v-if="question.replies">{{question.replies.length}} Replies</v-btn>
-                
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
         </v-card>
         <reply-form :slug="question.slug"></reply-form>
-        <reply-list :replies="question.replies"></reply-list>
+        <reply-list :replies="question.replies" :question_slug="question.slug"></reply-list>
     </v-container>
 </template>
 
@@ -62,6 +61,9 @@ export default {
         setupListeners(){
             EventBus.$on('reply-created', (reply)=>{
                 this.question.replies.unshift(reply);
+            });
+            EventBus.$on('reply-deleted', (reply)=>{
+                this.question.replies = this.question.replies.filter((item)=> item.id != reply.id );
             });
         },
         deleteQuestion(){

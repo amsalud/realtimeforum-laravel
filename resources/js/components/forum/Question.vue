@@ -49,8 +49,6 @@ export default {
             this.question.body = md.parse(this.question.body);
         })
         .catch(err=> console.log(err));
-
-        this.setupListeners();
     },
     computed: {
         own(){
@@ -58,14 +56,6 @@ export default {
         }
     },
     methods : {
-        setupListeners(){
-            EventBus.$on('reply-created', (reply)=>{
-                this.question.replies.unshift(reply);
-            });
-            EventBus.$on('reply-deleted', (reply)=>{
-                this.question.replies = this.question.replies.filter((item)=> item.id != reply.id );
-            });
-        },
         deleteQuestion(){
             axios.delete(`/api/question/${this.question.slug}`)
             .then(res=> this.$router.push('/forum'))

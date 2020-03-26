@@ -8,6 +8,7 @@ import Forum from '../components/forum/Forum'
 import Question from '../components/forum/Question'
 import QuestionForm from '../components/forum/QuestionForm'
 import Category from '../components/category/Category'
+import ReplyForm from '../components/reply/ReplyForm'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
     { path: '/question/ask', component: QuestionForm, name: 'askquestion'},
     { path: '/question/edit/:slug', component: QuestionForm, name: 'editquestion'},
     { path: '/question/:slug', component: Question, name: 'question' },
+    { path: '/question/:slug/reply/:reply_id/edit', component: ReplyForm, name: 'replyedit' },
     { path: '/category', component: Category, name: 'category' },
   ]
   

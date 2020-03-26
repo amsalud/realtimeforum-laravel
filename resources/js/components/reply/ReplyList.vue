@@ -11,6 +11,19 @@ export default {
     components: {
         ReplyItem
     }, 
-    props: ['replies', 'question_slug']
+    props: ['replies', 'question_slug'],
+    created(){
+        this.setupListeners();
+    },
+    methods: {
+        setupListeners(){
+            EventBus.$on('reply-created', (reply)=>{
+                this.replies.unshift(reply);
+            });
+            EventBus.$on('reply-deleted', (reply)=>{
+                this.replies = this.replies.filter((item)=> item.id != reply.id );
+            });
+        },
+    }
 }
 </script>

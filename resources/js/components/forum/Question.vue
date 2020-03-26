@@ -17,7 +17,7 @@
                         <v-icon>delete</v-icon>
                     </v-btn>
                 </v-card-actions>
-                <v-btn outlined>5 Replies</v-btn>
+                <v-btn outlined v-if="question.replies">{{question.replies.length}} Replies</v-btn>
                 
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
@@ -40,6 +40,8 @@ export default {
         .then(res=>{
             this.question = res.data.data
             this.question.body = md.parse(this.question.body);
+
+            console.log(this.question.replies);
         })
         .catch(err=> console.log(err));
     },

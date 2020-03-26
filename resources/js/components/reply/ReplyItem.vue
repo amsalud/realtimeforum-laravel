@@ -2,8 +2,8 @@
     <v-card class="ma-3">
         <v-card-title>
             <div class="headline">{{reply.user}}</div>
-            <div class="ml-2">said {{reply.created_at}}</div>
-            <v-card-actions class="align-end">
+            <div class="grey--text ml-2"> said {{reply.created_at}}</div>
+            <v-card-actions class="align-end ml-auto">
                 <v-btn icon small >
                     <v-icon>edit</v-icon>
                 </v-btn>

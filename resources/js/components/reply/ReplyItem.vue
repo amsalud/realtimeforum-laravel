@@ -3,7 +3,7 @@
         <v-card-title>
             <div class="headline">{{reply.user}}</div>
             <div class="grey--text ml-2"> said {{reply.created_at}}</div>
-            <v-card-actions class="align-end ml-auto">
+            <v-card-actions v-if="own" class="align-end ml-auto">
                 <v-btn icon small >
                     <v-icon>edit</v-icon>
                 </v-btn>
@@ -18,8 +18,14 @@
 </template>
 
 <script>
+import User from '../../helpers/User'
 export default {
     name: "ReplyItem",
-    props: ['reply']
+    props: ['reply'],
+    data(){
+        return{
+            own: User.own(this.reply.user_id)
+        }
+    }
 }
 </script>

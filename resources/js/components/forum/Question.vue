@@ -1,5 +1,6 @@
 <template>
     <v-container fluid>
+        <v-btn class="mb-3" depressed :to="'/forum'">Back</v-btn>
         <v-card>
             <v-card-title>
                 <div>

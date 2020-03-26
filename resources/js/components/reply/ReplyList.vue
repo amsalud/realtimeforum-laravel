@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <reply-item v-for="(item, index) in replies" :key="index" :reply="item"></reply-item>
+        <reply-item v-for="(item, index) in replies" :key="index" :reply="item" :question_slug="question_slug"></reply-item>
     </v-container>
 </template>
 
@@ -11,6 +11,6 @@ export default {
     components: {
         ReplyItem
     }, 
-    props: ['replies']
+    props: ['replies', 'question_slug']
 }
 </script>

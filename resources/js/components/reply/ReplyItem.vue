@@ -13,18 +13,25 @@
             </v-card-actions>
         </v-card-title>
          
-        <v-card-text v-html="reply.reply"></v-card-text>
+        <v-card-text v-html="bodyContent"></v-card-text>
     </v-card>
 </template>
 
 <script>
+import md from 'marked'
 import User from '../../helpers/User'
+
 export default {
     name: "ReplyItem",
     props: ['reply', 'question_slug'],
     data(){
         return{
-            own: User.own(this.reply.user_id)
+            own: User.own(this.reply.user_id),
+        }
+    },
+    computed: {
+        bodyContent(){
+            return this.reply ? md.parse(this.reply.reply) : '';
         }
     },
     methods: {

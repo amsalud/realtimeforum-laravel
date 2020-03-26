@@ -5,7 +5,6 @@
             <vue-simplemde v-model="form.body" ref="markdownEditor" />
             <v-btn class="success" type="submit">Submit</v-btn>
         </v-form>
-
     </v-container>
 </template>
 

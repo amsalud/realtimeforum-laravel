@@ -7,7 +7,7 @@
                 <v-btn icon small >
                     <v-icon>edit</v-icon>
                 </v-btn>
-                <v-btn icon small>
+                <v-btn icon small @click="deleteReply">
                     <v-icon>delete</v-icon>
                 </v-btn>
             </v-card-actions>
@@ -21,10 +21,17 @@
 import User from '../../helpers/User'
 export default {
     name: "ReplyItem",
-    props: ['reply'],
+    props: ['reply', 'question_slug'],
     data(){
         return{
             own: User.own(this.reply.user_id)
+        }
+    },
+    methods: {
+        deleteReply(){
+            axios.delete(`/api/question/${this.question_slug}/reply/${this.reply.id}`)
+            .then((res)=>EventBus.$emit('reply-deleted', this.reply))
+            .catch(err=>console.log(err));
         }
     }
 }

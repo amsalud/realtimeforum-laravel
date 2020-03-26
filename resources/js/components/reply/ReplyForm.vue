@@ -1,5 +1,6 @@
 <template>
     <v-container>
+        <v-btn class="mb-3" v-if="mode == 'edit'" depressed :to="`/question/${this.$route.params.slug}`">Back</v-btn>
         <h1 v-if="mode == 'create'" class="mb-3">Post a reply</h1>
         <h1 v-if="mode == 'edit'" class="mb-3">Edit a reply</h1>
         <v-form @submit.prevent="handleSubmit">

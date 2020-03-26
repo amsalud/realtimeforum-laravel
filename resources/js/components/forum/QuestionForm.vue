@@ -1,5 +1,8 @@
 <template>
     <v-container>
+    <v-btn v-if="editMode" class="mb-3" depressed :to="`/question/${this.$route.params.slug}`">Back</v-btn>    
+    <h1 v-if="!editMode">Ask a question</h1>    
+    <h1 v-if="editMode">Edit a question</h1>
     <v-form @submit.prevent="handleSubmit">
       <v-text-field
         v-model="form.title"

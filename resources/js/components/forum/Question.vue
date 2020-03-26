@@ -1,6 +1,6 @@
 <template>
-    <v-card>
-        <v-container fluid>
+    <v-container fluid>
+        <v-card>
             <v-card-title>
                 <div>
                     <div class="headline">
@@ -21,15 +21,20 @@
                 
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
-        </v-container>
-    </v-card>
+        </v-card>
+        <reply-list :replies="question.replies"></reply-list>
+    </v-container>
 </template>
 
 <script>
 import md from 'marked'
 import User from '../../helpers/User'
+import ReplyList from '../reply/ReplyList'
 export default {
     name: "Question",
+    components: {
+        ReplyList
+    },
     data(){
         return {
             question: {}

@@ -28,7 +28,7 @@ export default {
             this.postReply();
         },
         postReply(){
-            if(this.body && this.body.length){
+            if(this.form.body && this.form.body.length){
                 axios.post(`/api/question/${this.slug}/reply`, this.form)
                 .then(res=>{
                     this.form.body = '';

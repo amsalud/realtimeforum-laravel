@@ -23,6 +23,7 @@
             <v-card-text v-html="question.body"></v-card-text>
         </v-card>
         <reply-list :replies="question.replies"></reply-list>
+        <reply-form :slug="question.slug"></reply-form>
     </v-container>
 </template>
 
@@ -30,10 +31,12 @@
 import md from 'marked'
 import User from '../../helpers/User'
 import ReplyList from '../reply/ReplyList'
+import ReplyForm from '../reply/ReplyForm'
 export default {
     name: "Question",
     components: {
-        ReplyList
+        ReplyList,
+        ReplyForm
     },
     data(){
         return {

@@ -45,8 +45,6 @@ export default {
         .then(res=>{
             this.question = res.data.data
             this.question.body = md.parse(this.question.body);
-
-            console.log(this.question.replies);
         })
         .catch(err=> console.log(err));
     },

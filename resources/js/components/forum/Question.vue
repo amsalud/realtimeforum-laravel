@@ -22,8 +22,8 @@
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
         </v-card>
-        <reply-list :replies="question.replies"></reply-list>
         <reply-form :slug="question.slug"></reply-form>
+        <reply-list :replies="question.replies"></reply-list>
     </v-container>
 </template>
 
@@ -50,6 +50,8 @@ export default {
             this.question.body = md.parse(this.question.body);
         })
         .catch(err=> console.log(err));
+
+        this.setupListeners();
     },
     computed: {
         own(){
@@ -57,6 +59,11 @@ export default {
         }
     },
     methods : {
+        setupListeners(){
+            EventBus.$on('reply-created', (reply)=>{
+                this.question.replies.unshift(reply);
+            });
+        },
         deleteQuestion(){
             axios.delete(`/api/question/${this.question.slug}`)
             .then(res=> this.$router.push('/forum'))

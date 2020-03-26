@@ -25,7 +25,7 @@ class Question extends Model
     }
 
     public function replies(){
-        return $this->hasMany('App\Models\Reply');
+        return $this->hasMany('App\Models\Reply')->latest();
     }
 
     public function category(){

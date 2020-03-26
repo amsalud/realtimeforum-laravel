@@ -19,7 +19,9 @@ export default {
     props: ['slug'],
     data(){
         return{
-            form: {}
+            form: {
+                body: ''
+            }
         }
     },
     methods: {
@@ -27,9 +29,14 @@ export default {
             this.postReply();
         },
         postReply(){
-            axios.post(`/api/question/${this.slug}/reply`, this.form)
-            .then(res=> console.log(res.data))
-            .catch(err=> console.log(err));
+            if(this.body && this.body.length){
+                axios.post(`/api/question/${this.slug}/reply`, this.form)
+                .then(res=>{
+                    this.form.body = '';
+                    EventBus.$emit('reply-created', res.data.reply);
+                })
+                .catch(err=> console.log(err));
+            }
         }
     }
 }

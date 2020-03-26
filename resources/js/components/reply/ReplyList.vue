@@ -21,7 +21,8 @@ export default {
                 this.replies.unshift(reply);
             });
             EventBus.$on('reply-deleted', (reply)=>{
-                this.replies = this.replies.filter((item)=> item.id != reply.id );
+                const index = this.replies.filter((item)=> item.id != reply.id );
+                this.replies.splice(index, 1);
             });
         },
     }

@@ -22,7 +22,7 @@
             </v-card-title>
             <v-card-text v-html="question.body"></v-card-text>
         </v-card>
-        <reply-form :slug="question.slug"></reply-form>
+        <reply-form v-if="userLoggedIn" :slug="question.slug"></reply-form>
         <reply-list :replies="question.replies" :question_slug="question.slug"></reply-list>
     </v-container>
 </template>
@@ -33,7 +33,7 @@ import User from '../../helpers/User'
 import ReplyList from '../reply/ReplyList'
 import ReplyForm from '../reply/ReplyForm'
 export default {
-    name: "Question",
+name: "Question",
     components: {
         ReplyList,
         ReplyForm
@@ -54,6 +54,9 @@ export default {
     computed: {
         own(){
             return this.question ? User.own(this.question.user_id): null;
+        },
+        userLoggedIn(){
+            return User.loggedIn()
         }
     },
     methods : {

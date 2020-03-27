@@ -18,10 +18,11 @@ export default {
     methods: {
         setupListeners(){
             EventBus.$on('reply-created', (reply)=>{
+                console.log(reply);
                 this.replies.unshift(reply);
             });
             EventBus.$on('reply-deleted', (reply)=>{
-                const index = this.replies.filter((item)=> item.id != reply.id );
+                const index = this.replies.findIndex((item)=> item.id == reply.id );
                 this.replies.splice(index, 1);
             });
         },

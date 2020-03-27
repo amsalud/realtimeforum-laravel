@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <reply-item v-for="(item, index) in replies" :key="index" :reply="item" :question_slug="question_slug"></reply-item>
+        <reply-item v-for="(item) in replies" :key="item.id" :reply="item" :question_slug="question_slug"></reply-item>
     </v-container>
 </template>
 
@@ -18,7 +18,6 @@ export default {
     methods: {
         setupListeners(){
             EventBus.$on('reply-created', (reply)=>{
-                console.log(reply);
                 this.replies.unshift(reply);
             });
             EventBus.$on('reply-deleted', (reply)=>{

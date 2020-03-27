@@ -23,12 +23,7 @@ Route::apiResource('/category', 'CategoryController');
 Route::apiResource('/question/{question}/reply', 'ReplyController');
 Route::post('/like/{reply}', 'LikeController@likeReply');
 Route::delete('/like/{reply}', 'LikeController@unlikeReply');
-Route::post('notifications',  function (){
-    return [
-        'read' => auth()->user()->readNotifications()->get(),
-        'unread' => auth()->user()->unreadNotifications()->get()
-    ];
-});
+Route::post('notifications',  'NotificationController@getNotifications');
 Route::group([
 
     'middleware' => 'api',

@@ -1,13 +1,13 @@
 <template>
     <div class="text-center">
-    <v-menu offset-y>
+    <v-menu offset-y v-if="userLoggedIn">
       <template v-slot:activator="{ on }">
          <v-btn icon>
             <v-icon v-on="on">notifications</v-icon>
             {{unreadCount ? unreadCount : ''}}
         </v-btn>
       </template>
-      <v-list>
+      <v-list v-if="unread.length">
         <v-list-item v-for="item in unread" :key="item.id">
             <v-list-item-title @click="readNotification(item)">
                 {{`${item.replied_by} replied in ${item.question}`}}
@@ -25,15 +25,27 @@ export default {
         return{
             read: [],
             unread: [],
-            unreadCount: 0
+            unreadCount: 0,
+            userLoggedIn: User.loggedIn()
         }
     },
     created(){
+        this.setupListeners();
         if(User.loggedIn()){
             this.getNotifications();
         }
     },
     methods: {
+        setupListeners(){
+            EventBus.$on('logout', ()=> { 
+                this.userLoggedIn = User.loggedIn();
+            });
+
+            EventBus.$on('login', ()=> { 
+                this.userLoggedIn = User.loggedIn();
+                this.getNotifications();
+            });
+        },
         getNotifications(){
             axios.get('/api/notifications')
             .then(res=>{

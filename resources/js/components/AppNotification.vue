@@ -9,9 +9,9 @@
       </template>
       <v-list>
         <v-list-item v-for="item in unread" :key="item.id">
-        <router-link text :to="`/question/${item.data.slug}`" tag="v-list-item-title">
-           {{item.data.question}}
-        </router-link>
+            <v-list-item-title @click="readNotification(item)">
+                {{item.data.question}}
+            </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -35,12 +35,27 @@ export default {
     },
     methods: {
         getNotifications(){
-            axios.post('/api/notifications')
+            axios.get('/api/notifications')
             .then(res=>{
                 this.read = res.data.read;
                 this.unread = res.data.unread;
                 this.unreadCount = res.data.unread.length;
             })
+            .catch(err=>console.log(err));
+        },
+        readNotification(notification){
+            const payload = {
+                id: notification.id
+            };
+
+            axios.post('/api/notification/markAsRead', payload)
+            .then(res=> {
+                this.unread.splice(notification, 1);
+                this.read.push(notification);
+                this.unreadCount -=1;
+                this.$router.push(`/question/${notification.data.slug}`);
+            })
+            .catch(err=>console.log(err));
         }
     }
 }

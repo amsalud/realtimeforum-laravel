@@ -4,7 +4,7 @@
             <div class="headline">{{reply.user}}</div>
             <div class="grey--text ml-2"> said {{reply.created_at}}</div>
             <v-card-actions v-if="own" class="align-end ml-auto">
-                <reply-like></reply-like>
+                <reply-like :reply="reply"></reply-like>
                 <v-btn icon small :to="`/question/${question_slug}/reply/${reply.id}/edit`">
                     <v-icon>edit</v-icon>
                 </v-btn>

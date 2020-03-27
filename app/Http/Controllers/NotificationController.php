@@ -13,7 +13,7 @@ class NotificationController extends Controller
         ];
     }
 
-    public function markAsRead(){
-
+    public function markAsRead(Request $request){
+       return auth()->user()->notifications->where('id', $request->id)->markAsRead();
     }
 }

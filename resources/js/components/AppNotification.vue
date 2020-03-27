@@ -10,7 +10,7 @@
       <v-list>
         <v-list-item v-for="item in unread" :key="item.id">
             <v-list-item-title @click="readNotification(item)">
-                {{item.data.question}}
+                {{`${item.replied_by} replied in ${item.question}`}}
             </v-list-item-title>
         </v-list-item>
       </v-list>
@@ -53,7 +53,7 @@ export default {
                 this.unread.splice(notification, 1);
                 this.read.push(notification);
                 this.unreadCount -=1;
-                this.$router.push(`/question/${notification.data.slug}`);
+                this.$router.push(`/question/${notification.slug}`);
             })
             .catch(err=>console.log(err));
         }

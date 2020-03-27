@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    public function getNotifications(){
+    public function index(){
         return [
             'read' => auth()->user()->readNotifications()->get(),
             'unread' => auth()->user()->unreadNotifications()->get()
         ];
+    }
+
+    public function markAsRead(){
+
     }
 }

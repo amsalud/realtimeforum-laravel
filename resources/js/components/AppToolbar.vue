@@ -8,6 +8,7 @@
     >
       <v-toolbar-title>Laravel Forum</v-toolbar-title>
       <v-spacer></v-spacer>
+      <app-notification></app-notification>
       <v-toolbar-items class="hidden-sm-and-down">
           <v-btn  v-for="(item, index) in items" :key="index" :to="item.to" text medium v-show="item.show">{{item.title}}</v-btn>
       </v-toolbar-items>
@@ -17,8 +18,12 @@
 <script>
 
 import User from '../helpers/User'
+import AppNotification from './AppNotification'
 export default {
     name: "AppToolbar",
+    components :{
+      AppNotification
+    },
     data(){
       return {
         items: this.initializeMenuItems()

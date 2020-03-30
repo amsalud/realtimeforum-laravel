@@ -30,6 +30,16 @@ export default {
                this.liked = !this.liked;
            }
         }
+
+        Echo.private('likeChannel')
+        .listen('.LikeEvent', (e) => {
+            if(this.reply.id == e.data.reply_id && e.type == 1){
+                this.reply.likes.push(e.data);
+            }else if(this.reply.id == e.data.reply_id && e.type == 0){
+                const index = this.reply.likes.findIndex(like=> like.user_id == e.data.user_id);
+                this.reply.likes.splice(index, 1);
+            }
+        });
     },
     methods: {
         like(){

@@ -14,16 +14,16 @@ class LikeEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $id;
+    public $data;
     public $type;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($id, $type)
+    public function __construct($data, $type)
     {
-        $this->id = $id;
+        $this->data = $data;
         $this->type = $type;
     }
 

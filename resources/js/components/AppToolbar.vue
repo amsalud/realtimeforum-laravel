@@ -14,6 +14,8 @@
       <v-toolbar-items class="hidden-sm-and-down">
           <v-btn  v-for="(item, index) in items" :key="index" :to="item.to" text medium v-show="item.show">{{item.title}}</v-btn>
       </v-toolbar-items>
+      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
+     
     </v-app-bar>
 </template>
 
@@ -21,6 +23,8 @@
 
 import User from '../helpers/User'
 import AppNotification from './AppNotification'
+import MenuItems from '../helpers/MenuItems'
+
 export default {
     name: "AppToolbar",
     components :{
@@ -28,28 +32,26 @@ export default {
     },
     data(){
       return {
-        items: this.initializeMenuItems()
+        items: MenuItems.initialize(),
+        drawerToggle: false
       }
     },
 
     created(){
       EventBus.$on('logout', ()=> { 
         User.logout(this.$router);
-        this.items = this.initializeMenuItems();
+        this.items = MenuItems.initialize();
       });
 
       EventBus.$on('login', ()=> { 
-        this.items = this.initializeMenuItems();
+        this.items = MenuItems.initialize();
       });
     },
     methods: {
-      initializeMenuItems:() => ([
-          {title: 'Forum', to: '/forum', show: true},
-          {title: 'Ask Question', to: '/question/ask', show: User.loggedIn()},
-          {title: 'Category', to: '/category', show: User.loggedIn()},
-          {title: 'Sign in', to: '/login', show: !User.loggedIn()},
-          {title: 'Sign Out', to: '/logout', show: User.loggedIn()}
-        ])
+      toggleDrawer(){
+        this.drawerToggle = !this.drawerToggle;
+        EventBus.$emit('drawer-toggle', this.drawerToggle);
+      }
     }
 }
 </script>

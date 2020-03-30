@@ -1,7 +1,7 @@
 <template>
-    <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" height="1000">
+    <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
     
-        <v-layout column align-center justify-center>
+        <v-layout column align-center justify-center height="100%">
             <h1 class="white--text display-4">Laravel Forum</h1>
             <h4>Try it now!</h4>
         </v-layout>
@@ -13,3 +13,9 @@ export default {
     name: 'HomePage'
 }
 </script>
+
+<style scoped>
+    .v-parallax{
+        height: calc(100vh - 108px) !important;
+    }
+</style>

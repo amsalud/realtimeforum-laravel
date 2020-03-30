@@ -69,7 +69,6 @@ class User {
     }
 
     initializeEcho(){
-        console.log('InitializeEcho');
         if(AppStorage.getToken()){
             const auth_token = `Bearer ${AppStorage.getToken()}`;
             window.Echo = new Echo({

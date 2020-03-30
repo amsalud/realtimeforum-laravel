@@ -14,8 +14,7 @@ class User {
     responseAfterLogin(data){
         const {user, access_token } = data;
         if(Token.isValid(access_token)){
-            const token = `Bearer ${access_token}`;
-            window.axios.defaults.headers.common['Authorization'] = token;
+            this.setAuthorizationHeader(access_token);
             AppStorage.store(user, access_token);
             router.push({name: 'forum'});
             EventBus.$emit('login');
@@ -25,6 +24,7 @@ class User {
     hasToken(){
         const storedToken = AppStorage.getToken();
         if(storedToken){
+            this.setAuthorizationHeader(storedToken);
             return Token.isValid(storedToken) ?  true : this.logout();
         }
         return false;
@@ -55,6 +55,11 @@ class User {
 
     own(id){
         return this.getId() == id;
+    }
+
+    setAuthorizationHeader(token){
+        const auth_token = `Bearer ${token}`;
+        window.axios.defaults.headers.common['Authorization'] = auth_token;
     }
 }
 

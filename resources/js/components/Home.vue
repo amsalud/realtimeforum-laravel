@@ -14,6 +14,8 @@ import { Fragment } from 'vue-fragment'
 import AppToolbar from './AppToolbar'
 import AppFooter from './AppFooter'
 import AppDrawer from './AppDrawer'
+import User from '../helpers/User'
+import AppStorage from '../helpers/AppStorage'
 
 export default {
     name: 'Home',
@@ -22,6 +24,11 @@ export default {
         AppFooter,
         AppDrawer,
         Fragment
+    },
+    created(){
+        if(AppStorage.getToken()){
+            User.initializeEcho();
+        }
     }
 }
 </script>

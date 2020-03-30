@@ -19,7 +19,7 @@ export default {
     name: 'AppDrawer',
     data(){
         return {
-            drawerToggle : false,
+            drawerToggle: false,
             items: MenuItems.initialize()
         }
     },

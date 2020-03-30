@@ -6,6 +6,7 @@
 
 <script>
 import ReplyItem from './ReplyItem'
+import User from '../../helpers/User'
 export default {
     name: "ReplyList",
     components: {
@@ -14,6 +15,7 @@ export default {
     props: ['replies', 'question_slug'],
     created(){
         this.setupListeners();
+        this.setupEchoListeners();
     },
     methods: {
         setupListeners(){
@@ -25,6 +27,13 @@ export default {
                 this.replies.splice(index, 1);
             });
         },
+        setupEchoListeners(){
+            if(window.Echo){
+                Echo.private('App.User.' + User.getId()).notification((notification) => {
+                    this.replies.unshift(notification.reply);
+                });
+            }
+        }
     }
 }
 </script>

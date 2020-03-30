@@ -1,16 +1,15 @@
 <template>
-    <v-card>
+    <fragment>
         <app-toolbar></app-toolbar>
-        <v-sheet id="scrolling-techniques-7" class="overflow-y-auto" height="100vh">
-            <v-container class="mt-10 mb-10 pa-5">
+            <div class="main-container mt-10 mb-10 pt-5 pb-5 overflow-y-auto" id="scrolling-techniques-7">
                 <router-view></router-view>
-            </v-container>
-        </v-sheet>
+            </div>
         <app-footer></app-footer>
-    </v-card>
+    </fragment>
 </template>
 
 <script>
+import Fragment from 'vue-fragment'
 import AppToolbar from './AppToolbar'
 import AppFooter from './AppFooter'
 
@@ -24,5 +23,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .main-container{
+        height: 100vh;
+    }
 </style>

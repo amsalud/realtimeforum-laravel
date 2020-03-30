@@ -1,13 +1,13 @@
 import User from './User'
 
 class Exception {
-    handle(err){
-        this.isExpired(err.response.data.error);
+    handle(err, router){
+        this.isExpired(err.response.data.error, router);
     }
 
-    isExpired(err){
-        if(err ==  'Token is expired'){
-            User.logout();
+    isExpired(err, router){
+        if(err ==  'Token is expired' || err == 'Token is not provided'){
+            User.logout(router);
         }
     }
 }

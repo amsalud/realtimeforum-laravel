@@ -38,7 +38,7 @@ export default {
 
     created(){
       EventBus.$on('logout', ()=> { 
-        User.logout(this.$router);
+        User.logout();
         this.items = MenuItems.initialize();
       });
 

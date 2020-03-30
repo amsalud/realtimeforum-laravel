@@ -63,7 +63,7 @@ export default {
     },
     methods: {
         login(){
-            User.login(this.form, this.$router);
+            User.login(this.form);
         }
     }
 }

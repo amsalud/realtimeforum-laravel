@@ -1,5 +1,5 @@
 <template>
-<v-container>
+<div class="login-container">
     <h1>Sign in to continue</h1>
     <v-form @submit.prevent="login">
       <v-text-field
@@ -30,7 +30,7 @@
         to="/register"   
       >Create an account</v-btn>
     </v-form>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -70,5 +70,9 @@ export default {
 </script>
 
 <style scoped>
-
+    .login-container{
+        width: 350px;
+        margin:110px auto 0;
+        height: calc(100vh - 220px)
+    }
 </style>

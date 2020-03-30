@@ -1,8 +1,9 @@
 import Token from './Token'
 import AppStorage from './AppStorage'
+import router from '../router'
 
 class User {
-    login(formData, router) {
+    login(formData) {
         axios.post('/api/auth/login', formData)
         .then(res=> {
             this.responseAfterLogin(res.data, router);
@@ -10,7 +11,7 @@ class User {
         .catch(error=> console.log(error.response.data));
     }
 
-    responseAfterLogin(data, router){
+    responseAfterLogin(data){
         const {user, access_token } = data;
         if(Token.isValid(access_token)){
             const token = `Bearer ${access_token}`;
@@ -33,7 +34,7 @@ class User {
         return this.hasToken();
     }
 
-    logout(router){
+    logout(){
         delete window.axios.defaults.headers.common['Authorization']; 
         AppStorage.clear();
         router.push('forum');

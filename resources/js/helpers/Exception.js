@@ -7,7 +7,7 @@ class Exception {
 
     isExpired(err, router){
         if(err ==  'Token is expired' || err == 'Token is not provided'){
-            User.logout(router);
+            User.logout();
         }
     }
 }

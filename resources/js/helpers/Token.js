@@ -13,7 +13,19 @@ class Token {
     }
 
     decode(tokenPayload){
-        return JSON.parse(atob(tokenPayload));
+        if(this.isBase64(tokenPayload)){
+            return JSON.parse(atob(tokenPayload));
+        }
+        return false;   
+    }
+
+    isBase64(tokenPayload){
+        try{
+             returnbtoa(atob(tokenPayload)) == tokenPayload;
+        } 
+        catch(err){
+            return false;
+        }
     }
 
 }

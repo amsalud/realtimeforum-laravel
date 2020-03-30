@@ -14,7 +14,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
           <v-btn  v-for="(item, index) in items" :key="index" :to="item.to" text medium v-show="item.show">{{item.title}}</v-btn>
       </v-toolbar-items>
-      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="toggleDrawer" class="d-lg-none d-md-none"></v-app-bar-nav-icon>
      
     </v-app-bar>
 </template>

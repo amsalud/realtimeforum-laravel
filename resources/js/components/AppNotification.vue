@@ -55,7 +55,7 @@ export default {
                 this.unread = res.data.unread;
                 this.unreadCount = res.data.unread.length;
             })
-            .catch(err=>Exception.handle(err));
+            .catch(err=>Exception.handle(err, this.$router));
         },
         readNotification(notification){
             const payload = {

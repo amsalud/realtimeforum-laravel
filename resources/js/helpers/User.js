@@ -13,6 +13,8 @@ class User {
     responseAfterLogin(data, router){
         const {user, access_token } = data;
         if(Token.isValid(access_token)){
+            const token = `Bearer ${access_token}`;
+            window.axios.defaults.headers.common['Authorization'] = token;
             AppStorage.store(user, access_token);
             router.push({name: 'forum'});
             EventBus.$emit('login');
@@ -32,6 +34,7 @@ class User {
     }
 
     logout(router){
+        delete window.axios.defaults.headers.common['Authorization']; 
         AppStorage.clear();
         router.push('forum');
     }

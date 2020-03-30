@@ -31,6 +31,7 @@ export default {
             if(window.Echo){
                 Echo.private('App.User.' + User.getId()).notification((notification) => {
                     this.replies.unshift(notification.reply);
+                    EventBus.$emit('new-notification', notification);
                 });
             }
         }

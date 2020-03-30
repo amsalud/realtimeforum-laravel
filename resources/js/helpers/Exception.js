@@ -2,7 +2,7 @@ import User from './User'
 
 class Exception {
     handle(err){
-        this.isExpired(err.response.data);
+        this.isExpired(err.response.data.error);
     }
 
     isExpired(err){

@@ -53,3 +53,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+  .v-toolbar__title{
+    cursor:pointer;
+  }
+</style>

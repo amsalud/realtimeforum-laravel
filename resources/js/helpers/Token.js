@@ -21,7 +21,7 @@ class Token {
 
     isBase64(tokenPayload){
         try{
-             returnbtoa(atob(tokenPayload)) == tokenPayload;
+             return btoa(atob(tokenPayload)).replace(/=/g,'') == tokenPayload;
         } 
         catch(err){
             return false;

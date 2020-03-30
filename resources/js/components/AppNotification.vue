@@ -47,6 +47,11 @@ export default {
                 this.userLoggedIn = User.loggedIn();
                 this.getNotifications();
             });
+
+            EventBus.$on('new-notification', (data)=>{
+                this.unread.push(data);
+                this.unreadCount = this.unread.length;
+            })
         },
         getNotifications(){
             axios.get('/api/notifications')

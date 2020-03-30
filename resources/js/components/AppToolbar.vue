@@ -6,7 +6,9 @@
       elevate-on-scroll
       scroll-target="#scrolling-techniques-7"
     >
-      <v-toolbar-title>Laravel Forum</v-toolbar-title>
+      <router-link to="/" tag="v-toolbar-title">
+        Laravel Forum
+      </router-link>
       <v-spacer></v-spacer>
       <app-notification></app-notification>
       <v-toolbar-items class="hidden-sm-and-down">

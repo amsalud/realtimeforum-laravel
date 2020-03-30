@@ -19,6 +19,8 @@
 </template>
 <script>
 import User from '../helpers/User';
+import Exception from '../helpers/Exception'
+
 export default {
     name: "AppNotification",
     data(){
@@ -53,7 +55,7 @@ export default {
                 this.unread = res.data.unread;
                 this.unreadCount = res.data.unread.length;
             })
-            .catch(err=>console.log(err));
+            .catch(err=>Exception.handle(err));
         },
         readNotification(notification){
             const payload = {

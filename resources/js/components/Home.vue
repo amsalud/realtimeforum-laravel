@@ -3,8 +3,9 @@
         <app-toolbar></app-toolbar>
             <div class="main-container mt-10 mb-10 pt-5 pb-5 overflow-y-auto" id="scrolling-techniques-7">
                 <router-view></router-view>
+                      <app-footer></app-footer>
             </div>
-        <app-footer></app-footer>
+  
     </fragment>
 </template>
 
@@ -24,6 +25,6 @@ export default {
 
 <style scoped>
     .main-container{
-        height: 100vh;
+        height: calc(100vh - 20px);
     }
 </style>

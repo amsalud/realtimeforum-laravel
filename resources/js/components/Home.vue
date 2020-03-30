@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import {Fragment} from 'vue-fragment'
+import { Fragment } from 'vue-fragment'
 import AppToolbar from './AppToolbar'
 import AppFooter from './AppFooter'
 import AppDrawer from './AppDrawer'
 
 export default {
-    name: 'home',
+    name: 'Home',
     components : {
         AppToolbar,
         AppFooter,

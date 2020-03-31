@@ -33,6 +33,10 @@ export default {
                     this.replies.unshift(notification.reply);
                     EventBus.$emit('new-notification', notification);
                 });
+                Echo.private('deleteReplyChannel').listen('.DeleteReplyEvent', (e) => {
+                    const index = this.replies.findIndex(reply=> reply.id == e.id);
+                    this.replies.splice(index, 1);
+                });
             }
         }
     }

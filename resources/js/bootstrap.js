@@ -20,8 +20,15 @@ try {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+import Exception from './helpers/Exception'
+window.axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    Exception.handle(error);
+    return Promise.reject(error);
+});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -70,6 +70,7 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $question->update($request->all());
+        broadcast(new QuestionEvent(new QuestionResource($question), 'update'))->toOthers();
         return response( new QuestionResource($question), Response::HTTP_ACCEPTED);
     }
 
@@ -82,6 +83,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
+        broadcast(new QuestionEvent(new QuestionResource($question), 'delete'))->toOthers();
         return response(null, Response::HTTP_NO_CONTENT);
     }
 }

@@ -39,6 +39,15 @@ export default {
                     if(e.type == 'create'){
                         this.questions.unshift(e.data);
                     }
+                    else if(e.type == 'delete'){
+                        const index = this.questions.findIndex(question=> question.id == e.data.id);
+                        this.questions.splice(index, 1);
+              
+                    }
+                    else if(e.type == 'update'){
+                        const index = this.questions.findIndex(question=> question.id == e.data.id);
+                        this.$set(this.questions, index, e.data);
+                    }
                 });
             }
         }

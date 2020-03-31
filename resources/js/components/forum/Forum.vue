@@ -29,6 +29,19 @@ export default {
         axios.get('/api/question')
         .then(res=>this.questions = res.data.data)
         .catch(err=>console.log(err));
+
+        this.setupEchoListeners();
+    },
+    methods: {
+        setupEchoListeners(){
+            if(window.Echo){
+                Echo.private('questionChannel').listen('.QuestionEvent',(e)=>{
+                    if(e.type == 'create'){
+                        this.questions.unshift(e.data);
+                    }
+                });
+            }
+        }
     }
 }
 </script>

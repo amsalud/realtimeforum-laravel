@@ -24,7 +24,6 @@ const routes = [
     { path: '/question/:slug/reply/:reply_id/edit', component: ReplyForm, name: 'replyedit' },
     { path: '/category', component: Category, name: 'category' },
     { path: '/', component: HomePage, name: 'homepage' },
-   
   ]
   
 export default new VueRouter({ routes, mode: 'history'})

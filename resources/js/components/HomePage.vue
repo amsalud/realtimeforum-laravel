@@ -19,6 +19,6 @@ export default {
     }
 
     .v-parallax__image{
-        bottom:40px !important;
+        bottom:19% !important;
     }
 </style>

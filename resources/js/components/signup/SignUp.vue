@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+  <div class="signup-container">
     <h1>Create a new account</h1>
     <v-form @submit.prevent="signUp">
       <v-text-field
@@ -37,7 +37,7 @@
         to="/login"   
       >Sign In</v-btn>
     </v-form>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -79,3 +79,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+  .signup-container{
+    width: 350px;
+    margin: 40px auto 0;
+    height: calc(100vh - 150px);
+  }
+</style>

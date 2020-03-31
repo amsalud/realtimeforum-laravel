@@ -74,7 +74,10 @@ export default {
                 this.unread.splice(notification, 1);
                 this.read.push(notification);
                 this.unreadCount -=1;
-                this.$router.push(`/question/${notification.slug}`);
+
+                if(window.location.pathname != `/question/${notification.slug}`){
+                    this.$router.push(`/question/${notification.slug}`);
+                }
             })
             .catch(err=>console.log(err));
         },

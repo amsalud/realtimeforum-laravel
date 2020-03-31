@@ -6,6 +6,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\QuestionResource;
+use App\Events\QuestionEvent;
 
 class QuestionController extends Controller
 {
@@ -33,6 +34,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = auth()->user()->question()->create($request->all());
+        broadcast(new QuestionEvent(new QuestionResource($question), 'create'))->toOthers();
         return response( new QuestionResource($question), Response::HTTP_CREATED);
     }
 

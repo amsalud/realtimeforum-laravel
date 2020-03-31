@@ -8,7 +8,7 @@
         </v-btn>
       </template>
       <v-list v-if="unread.length">
-        <v-list-item v-for="item in unread" :key="item.id">
+        <v-list-item v-for="(item, index) in unread" :key="item.id + index">
             <v-list-item-title @click="readNotification(item)">
                 {{`${item.replied_by} replied in ${item.question}`}}
             </v-list-item-title>
@@ -28,7 +28,8 @@ export default {
             read: [],
             unread: [],
             unreadCount: 0,
-            userLoggedIn: User.loggedIn()
+            userLoggedIn: User.loggedIn(),
+            sound: 'http://soundbible.com/mp3/sms-alert-3-daniel_simon.mp3'
         }
     },
     created(){
@@ -51,6 +52,7 @@ export default {
             EventBus.$on('new-notification', (data)=>{
                 this.unread.push(data);
                 this.unreadCount = this.unread.length;
+                this.playSound();
             })
         },
         getNotifications(){
@@ -75,6 +77,10 @@ export default {
                 this.$router.push(`/question/${notification.slug}`);
             })
             .catch(err=>console.log(err));
+        },
+        playSound(){
+            let alert = new Audio(this.sound);
+            alert.play();
         }
     }
 }

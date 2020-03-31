@@ -40,7 +40,7 @@ class User {
         delete window.axios.defaults.headers.common['Authorization']; 
         delete window.Echo;
         AppStorage.clear();
-
+        EventBus.$emit('logout');
         if(window.location.pathname != '/forum'){
             router.push('forum');
         }

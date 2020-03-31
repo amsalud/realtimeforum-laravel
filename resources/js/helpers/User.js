@@ -74,8 +74,9 @@ class User {
             window.Echo = new Echo({
                 broadcaster: 'pusher',
                 key: '862039a80fa1951152ee',
-                cluster: 'us2',
-                encrypted: true,
+                wsHost: window.location.hostname,
+                wsPort: 6001,
+                disableStats: true,
                 auth:{
                     headers: {
                         Authorization: auth_token

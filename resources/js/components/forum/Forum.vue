@@ -3,6 +3,9 @@
         <v-layout>
             <v-flex xs8>
                 <question-item v-for="(question, index) in questions" :key="index" :question="question"></question-item>
+                <div class="text-center">
+                    <v-pagination v-model="pagination.current_page" :length="pagination.last_page" circle @input="fetchData"></v-pagination>
+                </div>
             </v-flex>
             <v-flex>
                 <sidebar></sidebar>
@@ -22,17 +25,25 @@ export default {
     },
     data(){
         return {
-            questions: null
+            questions: null,
+            pagination: {
+                current_page:1
+            }
         }
     },
     created(){
-        axios.get('/api/question')
-        .then(res=>this.questions = res.data.data)
-        .catch(err=>console.log(err));
-
+        this.fetchData();
         this.setupEchoListeners();
     },
     methods: {
+        fetchData(){
+            axios.get(`/api/question?page=${this.pagination.current_page}`)
+            .then(res=>{
+                this.questions = res.data.data;
+                this.pagination = res.data.meta;
+            })
+            .catch(err=>console.log(err));
+        },
         setupEchoListeners(){
             if(window.Echo){
                 Echo.private('questionChannel').listen('.QuestionEvent',(e)=>{

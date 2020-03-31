@@ -1,10 +1,11 @@
 <template>
 </template>
 <script>
+import User from '../../helpers/User'
 export default {
     name: "Logout",
     created(){
-        EventBus.$emit('logout');
+        User.logout();
     }
 }
 </script>

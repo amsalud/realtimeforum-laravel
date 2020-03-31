@@ -24,3 +24,7 @@ Broadcast::channel('likeChannel', function () {
 Broadcast::channel('deleteReplyChannel', function () {
     return true;
 });
+
+Broadcast::channel('questionChannel', function () {
+    return true;
+});

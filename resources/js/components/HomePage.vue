@@ -13,8 +13,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     .v-parallax{
         height: calc(100vh - 108px) !important;
+    }
+
+    .v-parallax__image{
+        bottom:40px !important;
     }
 </style>
